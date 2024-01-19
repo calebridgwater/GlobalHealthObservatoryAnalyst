@@ -1,35 +1,61 @@
 {
-  "base_url": "https://ghoapi.azureedge.net/api",
-  "endpoints": [
+  "openapi": "3.0.0",
+  "info": {
+    "title": "GHO API",
+    "version": "1.0.0"
+  },
+  "servers": [
     {
-      "name": "List of Indicators",
-      "path": "/Indicator",
-      "method": "GET",
-      "description": "Retrieves a list of all available indicators."
-    },
-    {
-      "name": "Specific Indicator Data",
-      "path": "/{IndicatorCode}",
-      "method": "GET",
-      "params": {
-        "IndicatorCode": {
-          "type": "string",
-          "description": "The specific code of the indicator, e.g., WHOSIS_000001."
-        }
-      },
-      "description": "Retrieves data for a specified indicator."
-    },
-    {
-      "name": "Filtered Indicator Data",
-      "path": "/{IndicatorCode}",
-      "method": "GET",
-      "query": {
-        "filter": {
-          "type": "string",
-          "description": "Conditions to filter the data, e.g., Dim1 eq 'MLE'."
-        }
-      },
-      "description": "Retrieves data for a specified indicator with applied filters."
+      "url": "https://ghoapi.azureedge.net/api"
     }
-  ]
+  ],
+  "paths": {
+    "/Indicator": {
+      "get": {
+        "summary": "List of Indicators",
+        "description": "Retrieves a list of all available indicators."
+      }
+    },
+    "/{IndicatorCode}": {
+      "get": {
+        "summary": "Specific Indicator Data",
+        "parameters": [
+          {
+            "name": "IndicatorCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The specific code of the indicator, e.g., WHOSIS_000001."
+          }
+        ],
+        "description": "Retrieves data for a specified indicator."
+      }
+    },
+    "/{IndicatorCode}": {
+      "get": {
+        "summary": "Filtered Indicator Data",
+        "parameters": [
+          {
+            "name": "IndicatorCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Conditions to filter the data, e.g., Dim1 eq 'MLE'."
+          }
+        ],
+        "description": "Retrieves data for a specified indicator with applied filters."
+      }
+    }
+  }
 }
