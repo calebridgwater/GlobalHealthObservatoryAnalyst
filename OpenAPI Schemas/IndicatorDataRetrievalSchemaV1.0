@@ -1,0 +1,35 @@
+{
+  "base_url": "https://ghoapi.azureedge.net/api",
+  "endpoints": [
+    {
+      "name": "List of Indicators",
+      "path": "/Indicator",
+      "method": "GET",
+      "description": "Retrieves a list of all available indicators."
+    },
+    {
+      "name": "Specific Indicator Data",
+      "path": "/{IndicatorCode}",
+      "method": "GET",
+      "params": {
+        "IndicatorCode": {
+          "type": "string",
+          "description": "The specific code of the indicator, e.g., WHOSIS_000001."
+        }
+      },
+      "description": "Retrieves data for a specified indicator."
+    },
+    {
+      "name": "Filtered Indicator Data",
+      "path": "/{IndicatorCode}",
+      "method": "GET",
+      "query": {
+        "filter": {
+          "type": "string",
+          "description": "Conditions to filter the data, e.g., Dim1 eq 'MLE'."
+        }
+      },
+      "description": "Retrieves data for a specified indicator with applied filters."
+    }
+  ]
+}
