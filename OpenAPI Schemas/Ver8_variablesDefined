@@ -1,0 +1,13 @@
+
+# Variable definitions for Schema version 8 "flexible and dynamic"
+
+built to address errors in API data requests that stall out or overload and result in error, perhaps the data returned is not in the expected format for the custom action. This 'flexible and dynamic' schema should allow for a wider range of responses.
+
+Schema parameters to define:
+
+1. The filter parameter allows for specific targeting of the data.
+2. The select parameter ensures that only necessary data fields are returned.
+3. The top and skip parameters enable control over the amount of data in each response, useful for handling large datasets.
+4. The orderby parameter can be used to sort the data.
+5. The count parameter is added to optionally include a count of the results, which can be helpful in understanding the dataset's size.
+6. The format parameter allows specifying the response format, with a default set to 'json' for efficiency.

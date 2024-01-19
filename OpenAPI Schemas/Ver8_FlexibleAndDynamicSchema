@@ -1,0 +1,92 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Flexible and Dynamic GHO GPT API Schema",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://ghoapi.azureedge.net/api"
+    }
+  ],
+  "paths": {
+    "/{Entity}": {
+      "get": {
+        "operationId": "getEntityData",
+        "summary": "Dynamic Entity Data",
+        "parameters": [
+          {
+            "name": "Entity",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Entity can be 'Indicator', 'Dimension/COUNTRY', or any specific code or entity in the GHO data."
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "OData filter conditions to tailor the data."
+          },
+          {
+            "name": "select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "OData select expression to specify which fields to include in the response."
+          },
+          {
+            "name": "top",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            },
+            "description": "Limits the number of results returned."
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Skips a number of results (useful for pagination)."
+          },
+          {
+            "name": "orderby",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "OData orderby expression to order the results."
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            },
+            "description": "Include a count of the results in the response."
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": ["json", "xml"],
+              "default": "json"
+            },
+            "description": "Specifies the format of the response."
+          }
+        ],
+        "description": "Retrieves data based on dynamic entity and query parameters."
+      }
+    }
+  }
+}
