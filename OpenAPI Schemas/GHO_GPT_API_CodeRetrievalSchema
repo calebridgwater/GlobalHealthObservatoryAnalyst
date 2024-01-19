@@ -1,0 +1,37 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "GHO GPT API - Code Retrieval Schema",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://ghoapi.azureedge.net/api"
+    }
+  ],
+  "paths": {
+    "/Dimension": {
+      "get": {
+        "summary": "List of Dimensions",
+        "description": "Retrieves a list of all available dimensions which can include indicators, countries, etc."
+      }
+    },
+    "/Dimension/{DimensionType}/DimensionValues": {
+      "get": {
+        "summary": "Specific Dimension Values",
+        "parameters": [
+          {
+            "name": "DimensionType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The type of dimension to retrieve values for, e.g., 'COUNTRY' or 'Indicator'."
+          }
+        ],
+        "description": "Retrieves a list of values for a specific dimension type."
+      }
+    }
+  }
+}
