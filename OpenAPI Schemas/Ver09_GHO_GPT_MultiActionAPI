@@ -1,0 +1,146 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "DynamicQuery GHO OpenAPI Schema",
+    "version": "9.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://ghoapi.azureedge.net/api"
+    }
+  ],
+  "paths": {
+    "/Dimension": {
+      "get": {
+        "operationId": "listDimensions",
+        "summary": "List of Dimensions",
+        "description": "Retrieves a list of all available dimensions.",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/DIMENSION/{DimensionName}/DimensionValues": {
+      "get": {
+        "operationId": "getDimensionValues",
+        "summary": "Dimension Values",
+        "parameters": [
+          {
+            "name": "DimensionName",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "Name of the dimension to retrieve values for."
+          }
+        ],
+        "description": "Retrieves all possible values for a given dimension.",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "type": "object" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Indicator": {
+      "get": {
+        "operationId": "listIndicators",
+        "summary": "List of Indicators",
+        "description": "Retrieves a list of all available indicators.",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{IndicatorCode}": {
+      "get": {
+        "operationId": "getIndicatorData",
+        "summary": "Specific Indicator Data",
+        "parameters": [
+          {
+            "name": "IndicatorCode",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "Specific indicator code for which to retrieve data."
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": { "type": "string" },
+            "description": "OData filter conditions."
+          }
+        ],
+        "description": "Retrieves data for a specific GHO indicator.",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "indicator": { "type": "string" },
+                    "data": {
+                      "type": "array",
+                      "items": { "type": "object" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/REGION": {
+      "get": {
+        "operationId": "listRegions",
+        "summary": "List of Regions",
+        "description": "Retrieves a list of all WHO regions.",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    
+  }
+  
+}
