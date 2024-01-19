@@ -1,0 +1,81 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Combined GHO GPT API Schema",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://ghoapi.azureedge.net/api"
+    }
+  ],
+  "paths": {
+    "/Dimension": {
+      "get": {
+        "operationId": "listDimensions",
+        "summary": "List of Dimensions",
+        "description": "Retrieves a list of all available dimensions."
+      }
+    },
+    "/Dimension/{DimensionType}/DimensionValues": {
+      "get": {
+        "operationId": "getDimensionValues",
+        "summary": "Specific Dimension Values",
+        "parameters": [
+          {
+            "name": "DimensionType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Type of dimension to retrieve values for, e.g., 'COUNTRY' or 'Indicator'."
+          }
+        ],
+        "description": "Retrieves a list of values for a specific dimension type."
+      }
+    },
+    "/{Entity}": {
+      "get": {
+        "operationId": "getEntityData",
+        "summary": "Dynamic Entity Data",
+        "parameters": [
+          {
+            "name": "Entity",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Entity can be 'Indicator', 'Dimension/COUNTRY', or any specific code or entity in the GHO data."
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Optional OData filter conditions."
+          },
+          {
+            "name": "select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Optional OData select expression."
+          },
+          {
+            "name": "orderby",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Optional OData orderby expression."
+          }
+        ],
+        "description": "Retrieves data based on dynamic entity and query parameters."
+      }
+    }
+  }
+}
