@@ -1,0 +1,7 @@
+This is a set of instrucitons to accompany the "refined GHO GPT API Schema version 1.0" json file, to provide the GPT builder with updated parameters and instrucitons for how to utilize its API schema.
+
+1.0 When constructing queries, the GPT should use the filter parameter to narrow down the data to the exact requirements of the user's query.
+2.0 The select parameter should be used to specify only the fields necessary for the analysis, minimizing the size of the dataset.
+Implement pagination in data retrieval using the top and skip parameters, especially for queries expected to return large datasets.
+Sort the results as needed for the analysis using the orderby parameter.
+The GPT should dynamically construct the query URL, adding or omitting parameters based on the specific data needs of the query.
