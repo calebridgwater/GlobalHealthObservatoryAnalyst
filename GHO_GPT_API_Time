@@ -1,0 +1,40 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "GHO GPT API TIME",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://ghoapi.azureedge.net/api"
+    }
+  ],
+  "paths": {
+    "/{IndicatorCode}/{TimePeriod}": {
+      "get": {
+        "summary": "Time-Series Data",
+        "parameters": [
+          {
+            "name": "IndicatorCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Indicator code for time series."
+          },
+          {
+            "name": "TimePeriod",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Specific time period for the data, e.g., 2011-2020."
+          }
+        ],
+        "description": "Retrieves historical data or trends over time for a specific indicator."
+      }
+    }
+  }
+}

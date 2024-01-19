@@ -1,0 +1,40 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "GHO GPT API COMPARATIVE",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://ghoapi.azureedge.net/api"
+    }
+  ],
+  "paths": {
+    "/{IndicatorCode}/{CountryCode}": {
+      "get": {
+        "summary": "Comparative Data",
+        "parameters": [
+          {
+            "name": "IndicatorCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Indicator code for comparison."
+          },
+          {
+            "name": "CountryCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Country code for comparison."
+          }
+        ],
+        "description": "Retrieves comparative data between countries or indicators."
+      }
+    }
+  }
+}
