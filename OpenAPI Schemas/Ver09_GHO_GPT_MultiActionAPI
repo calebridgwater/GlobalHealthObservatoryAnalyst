@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "DynamicQuery GHO OpenAPI Schema",
-    "version": "9.2.0"
+    "version": "9.3.0"
   },
   "servers": [
     {
@@ -96,7 +96,7 @@
     },
     "/{IndicatorCode}": {
       "get": {
-        "operationId": "getIndicatorDataYearly",
+        "operationId": "getPagedIndicatorDataYearly",
         "summary": "Specific Indicator Data",
         "parameters": [
           {
@@ -111,6 +111,18 @@
             "in": "query",
             "schema": { "type": "string" },
             "description": "OData filter conditions."
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": { "type": "integer", "default": 1 },
+            "description": "page number of the data set to retrieve."
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": { "type": "integer", "default": 50 },
+            "description": "number of records per page."
           },
           {
             "name": "year",
