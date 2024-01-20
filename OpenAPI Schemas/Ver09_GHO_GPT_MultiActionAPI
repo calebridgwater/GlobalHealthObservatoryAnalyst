@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "DynamicQuery GHO OpenAPI Schema",
-    "version": "9.1.0"
+    "version": "9.2.0"
   },
   "servers": [
     {
@@ -96,7 +96,7 @@
     },
     "/{IndicatorCode}": {
       "get": {
-        "operationId": "getIndicatorData",
+        "operationId": "getIndicatorDataYearly",
         "summary": "Specific Indicator Data",
         "parameters": [
           {
@@ -111,6 +111,12 @@
             "in": "query",
             "schema": { "type": "string" },
             "description": "OData filter conditions."
+          },
+          {
+            "name": "year",
+            "in": "query",
+            "schema": { "type": "integer" },
+            "description": "specific year for which to retrieve data."
           }
         ],
         "description": "Retrieves data for a specific GHO indicator.",
