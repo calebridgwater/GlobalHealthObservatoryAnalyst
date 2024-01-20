@@ -131,16 +131,20 @@
             "description": "specific year for which to retrieve data."
           }
         ],
-        "description": "Retrieves data for a specific GHO indicator.",
+        "description": "Retrieves data for a specific GHO indicator with filter and pagination.",
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Paginated list of indicator data with applied filters.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
                     "indicator": { "type": "string" },
+                    "currentPage": { "type": "integer" },
+                    "totalPages": { "type": "integer" },
+                    "pageSize": { "type": "integer" },
+                    "totalRecords": { "type": "integer" },
                     "data": {
                       "type": "array",
                       "items": { "type": "object" }
