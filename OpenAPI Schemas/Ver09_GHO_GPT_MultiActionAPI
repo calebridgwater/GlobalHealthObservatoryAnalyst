@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "DynamicQuery GHO OpenAPI Schema",
-    "version": "9.0.0"
+    "version": "9.1.0"
   },
   "servers": [
     {
@@ -61,9 +61,18 @@
     },
     "/Indicator": {
       "get": {
-        "operationId": "listIndicators",
-        "summary": "List of Indicators",
-        "description": "Retrieves a list of all available indicators.",
+        "operationId": "filteredIndicators",
+        "summary": "Filtered List of Indicators",
+        "description": "Retrieves a list of indicators containing a specific keyword.",
+        "parameters": [
+            {
+                "name": "$filter",
+                "in": "query",
+                "required": true,
+                "schema": {"type": "string" },
+                "description": "OData filter expression to filter indicators by a keyword, per WHO GHO api examples."
+            }
+        ],
         "responses": {
           "200": {
             "description": "Successful response",
@@ -71,7 +80,13 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": { "type": "string" }
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                        "IndicatorName": { "type": "string" },
+                        "IndicatorCode": { "type": "string" }
+                    }
+                  }
                 }
               }
             }
