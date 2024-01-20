@@ -1,0 +1,181 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "IterativeKeywordQuery GHO OpenAPI Schema",
+    "version": "10.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://ghoapi.azureedge.net/api"
+    }
+  ],
+  "paths": {
+    "/Dimension": {
+      "get": {
+        "operationId": "listDimensions",
+        "summary": "List of Dimensions",
+        "description": "Retrieves a list of all available dimensions.",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/DIMENSION/{DimensionName}/DimensionValues": {
+      "get": {
+        "operationId": "getDimensionValues",
+        "summary": "Dimension Values",
+        "parameters": [
+          {
+            "name": "DimensionName",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "Name of the dimension to retrieve values for."
+          }
+        ],
+        "description": "Retrieves all possible values for a given dimension.",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "type": "object" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Indicator": {
+      "get": {
+        "operationId": "searchIndicators",
+        "summary": "Search Indicators by a Single Keyword",
+        "description": "Performs a broad search of indicators using a single keyword.",
+        "parameters": [
+            {
+                "name": "$filter",
+                "in": "query",
+                "required": true,
+                "schema": {"type": "string" },
+                "description": "OData filter expression to filter indicators by a keyword, per WHO GHO api examples."
+            }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                        "IndicatorName": { "type": "string" },
+                        "IndicatorCode": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{IndicatorCode}": {
+      "get": {
+        "operationId": "getPagedIndicatorDataYearly",
+        "summary": "Specific Indicator Data",
+        "parameters": [
+          {
+            "name": "IndicatorCode",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "Specific indicator code for which to retrieve data."
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": { "type": "string" },
+            "description": "OData filter conditions."
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": { "type": "integer", "default": 1 },
+            "description": "page number of the data set to retrieve."
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": { "type": "integer", "default": 50 },
+            "description": "number of records per page."
+          },
+          {
+            "name": "year",
+            "in": "query",
+            "schema": { "type": "integer" },
+            "description": "specific year for which to retrieve data."
+          }
+        ],
+        "description": "Retrieves data for a specific GHO indicator with filter and pagination.",
+        "responses": {
+          "200": {
+            "description": "Paginated list of indicator data with applied filters.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "indicator": { "type": "string" },
+                    "currentPage": { "type": "integer" },
+                    "totalPages": { "type": "integer" },
+                    "pageSize": { "type": "integer" },
+                    "totalRecords": { "type": "integer" },
+                    "data": {
+                      "type": "array",
+                      "items": { "type": "object" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/REGION": {
+      "get": {
+        "operationId": "listRegions",
+        "summary": "List of Regions",
+        "description": "Retrieves a list of all WHO regions.",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    } 
+  } 
+}
